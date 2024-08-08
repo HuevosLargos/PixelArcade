@@ -1,139 +1,139 @@
-<template>
-  <div id="bg">
-      <h1 id="selectortxt">
-          Selector de juegos
-      </h1>
-    <div class="row row-cols-1 row-cols-md-3 g-4" id="carta">
-      <div class="col" v-for="(card, index) in cards" :key="index">
-        <div :class="['card', card.class, { active: index === currentCard, left: index === (currentCard - 1 + cards.length) % cards.length, right: index === (currentCard + 1) % cards.length }]">
-          <img :src="card.img" class="card-img-top" />
-          <div class="card-body">
-            <p class="card-title">{{ card.title }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="controls">
-      <button @click="prevCard">⬅️</button>
-      <button @click="nextCard">➡️</button>
-    </div>
-  </div>
-</template>
+<script setup lang="ts">
+import { ref } from 'vue';
+import navComponent from '~/components/navGeneral.vue';
 
-<script>
-export default {
-  data() {
-    return {
-      cards: [
-        { class: 'card-1', img: require('../../public/img/pacman.png'), title: 'Pacman' },
-        { class: 'card-2', img: require('../../public/img/Pong atari.png'), title: 'Pong' },
-        { class: 'card-3', img: require('../../public/img/Space invaders.png'), title: 'Space invaders' }
-      ],
-      currentCard: 0,
-      isTransitioning: false
-    };
+const Juegos = ref([
+  {
+    class: "Juego-1",
+    img: require("../../public/img/pacman.png"),
+    title: "Pacman",
+    description: ""
   },
-  methods: {
-    nextCard() {
-      if (!this.isTransitioning) {
-        this.isTransitioning = true;
-        setTimeout(() => {
-          this.currentCard = (this.currentCard + 1) % this.cards.length;
-          this.isTransitioning = false;
-        }, 500); // 500ms delay
-      }
-    },
-    prevCard() {
-      if (!this.isTransitioning) {
-        this.isTransitioning = true;
-        setTimeout(() => {
-          this.currentCard = (this.currentCard - 1 + this.cards.length) % this.cards.length;
-          this.isTransitioning = false;
-        }, 500); // 500ms delay
-      }
-    }
+  {
+    class: "Juego-2",
+    img: require("../../public/img/Pong atari.png"),
+    title: "Pong",
+    description: ""
+  },
+  {
+    class: "Juego-3",
+    img: require("../../public/img/Space invaders.png"),
+    title: "Space Invaders",
+    description: ""
+  },
+]);
+
+const currentJuego = ref(0);
+const isTransitioning = ref(false);
+
+const nextJuego = () => {
+  if (!isTransitioning.value) {
+    isTransitioning.value = true;
+    currentJuego.value = (currentJuego.value + 1) % Juegos.value.length;
+    setTimeout(() => {
+      isTransitioning.value = false;
+    }, 500); // Duración de la animación
+  }
+};
+
+const prevJuego = () => {
+  if (!isTransitioning.value) {
+    isTransitioning.value = true;
+    currentJuego.value = (currentJuego.value - 1 + Juegos.value.length) % Juegos.value.length;
+    setTimeout(() => {
+      isTransitioning.value = false;
+    }, 500); // Duración de la animación
   }
 };
 </script>
 
+<template>
+  <div id="bg">
+    <navComponent />
+    <div id="ContenedorJuegos" class="tipografia">
+      <div v-for="(Juego, index) in Juegos" :key="index" id="Contenedor1" v-show="index === currentJuego">
+        <img :src="Juego.img" class="card-img-top shadow-box rounded" id="imagen" />
+        <h2 class="titulo">{{ Juego.title }}</h2>
+        <button @click="prevJuego" class="btn btn-primary flecha"><svg class="w-6 h-6 text-white" aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M5 12h14M5 12l4-4m-4 4 4 4" />
+          </svg>
+        </button>
+        <button @click="nextJuego" class="btn btn-primary flecha"><svg class="w-6 h-6 text-white" aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M19 12H5m14 0-4 4m4-4-4-4" />
+          </svg>
+        </button>
+        <div class="buton-2">
+          <a href="" class="btn-2 tipografia">Jugar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
-
-#carta {
-  max-width: 85%;
-  padding-left: 20%;
-  padding-top: 25%;
-  display: flex;
-  overflow: hidden;
-  position: relative;
-}
 
 #bg {
   background: #000;
   min-height: 100vh;
-  font-family: "Press Start 2P";
-  font-size: large;
+}
+
+#ContenedorJuegos {
+  max-width: 700px;
+  min-width: 700px;
+  max-height: 700px;
+  min-height: 700px;
+  margin-left: 32%;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
-.card {
-  min-width: 100%;
-  transition: transform 0.5s ease;
-  position: absolute;
-  top: 0;
-  left: 0;
+#imagen {}
+
+#Contenedor1 {
+  transition: opacity 0.5s ease;
+  text-align: center;
 }
 
-.card img {
-  width: 100%;
-  height: auto;
+.tipografia {
+  font-family: "Press Start 2P";
+  text-transform: uppercase;
 }
 
-.card.active {
-  transform: translateX(0);
-  z-index: 2;
-}
-
-.card.left {
-  transform: translateX(-100%);
-  z-index: 1;
-}
-
-.card.right {
-  transform: translateX(100%);
-  z-index: 1;
-}
-
-.card-1 {
-  background-color: #433d8b;
-}
-
-.card-2 {
-  background-color: #41b06e;
-}
-
-.card-3 {
-  background-color: #5f374b;
-}
-
-.controls {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  margin-top: 20px;
-}
-
-button {
-  background: none;
-  border: none;
+.titulo {
   color: white;
-  font-size: 2rem;
-  cursor: pointer;
+  text-align: center;
+  padding-top: 14%;
+  font-size: x-large;
+
 }
-#selectortxt{
-  padding-bottom: 3%;
+
+.flecha {
+  background-color: transparent;
+  border: none;
+  margin: 10px;
+}
+
+.shadow-box {
+  box-shadow: 0 0 40px white;
+}
+
+.btn-2 {
+  text-decoration: none;
+  background-color: #e1ad12;
+  color: rgb(49, 49, 49);
+  padding: 10px 20px;
+  border-radius: 20px;
+  transition: all .3s ease;
+}
+
+.buton-2 {
+  margin-top: 10%;
 }
 </style>

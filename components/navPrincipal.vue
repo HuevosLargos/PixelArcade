@@ -4,14 +4,13 @@
       <div class="navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/biblioteca"
-              id="game"><strong>Principal</strong></a>
+            <a class="nav-link active" aria-current="page" href="/" id="game"><strong>Principal</strong></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="/Contactanos" id="contact"><strong>Contactanos</strong></a>
+            <a class="nav-link active" href="/Contactanos" id="contact"><strong>Contacto</strong></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="/sobreNosotros" id="about"><strong>Info</strong></a>
+            <a class="nav-link active" href="/biblioteca" id="about"><strong>Juegos</strong></a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" href="/sobreNosotros" id="username"><strong>Records</strong></a>
@@ -38,6 +37,8 @@
   overflow: hidden;
   background-color: #fff;
   transition: background-color 0.5s ease;
+  display: grid;
+  place-content: center;
   /* Añade esto */
 }
 
@@ -103,7 +104,7 @@
   justify-content: flex-end;
   height: 50px;
   transition: height 0.3s ease;
-  margin-right: 26.5%;
+  margin-right: 28%;
 }
 
 .nav-item {
