@@ -1,6 +1,46 @@
+<script lang="ts">
+import navComponent from '~/components/navPrincipal.vue';
+
+export default {
+  components: {
+    navComponent
+  },
+  mounted() {
+    const title = document.getElementById('title');
+    const subtitle = document.getElementById('subtitle');
+    const navbar = document.querySelector('.navbar');
+    const disponibles = document.getElementById('JuegosdisponiblesTitulo');
+
+    setTimeout(() => {
+      if (title) {
+        title.classList.add('animate-title');
+      }
+      if (subtitle) {
+        subtitle.classList.add('animate-subtitle');
+      }
+    }, 1500); // Inicia la animación después de 1.5 segundos
+
+    setTimeout(() => {
+      if (navbar) {
+        navbar.classList.remove('hidden');
+        navbar.classList.add('visible');
+      }
+    }, 3000); // Inicia la animación después de 3 segundos
+
+    setTimeout(() => {
+      if (disponibles) {
+        disponibles.classList.remove('hidden');
+        disponibles.classList.add('visible');
+      }
+    }, 4000); // Inicia la animación después de 4 segundos
+  }
+}
+</script>
+
+
 <template>
   <div id="bg">
-    <navComponent class="navbar hidden" />
+    <navComponent class="hidden"/>
     <div id="tipografia">
       <div id="textosTitulos">
         <h1 id="title">¡Bienvenid@ A PixelArcade!</h1>
@@ -21,45 +61,6 @@
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  mounted() {
-    const title = document.getElementById('title');
-    const subtitle = document.getElementById('subtitle');
-    const navbar = document.querySelector('.navbar');
-    const disponibles = document.getElementById('JuegosdisponiblesTitulo');
-    // Hacer el nav invisible al principio sin transición
-    navbar.classList.add('no-transition');
-    disponibles.classList.add('no-transition');
-
-    setTimeout(() => {
-      title.classList.add('animate-title');
-      subtitle.classList.add('animate-subtitle');
-    }, 1500); // Inicia la animación después de 1.5 segundos
-
-    // Hacer el nav visible después de 1 segundo
-    setTimeout(() => {
-      navbar.classList.remove('hidden', 'no-transition');
-      navbar.classList.add('visible');
-    }, 3000); // Inicia la animación después de 3 segundos
-
-    setTimeout(() => {
-      disponibles.classList.remove('hidden', 'no-transition');
-      disponibles.classList.add('visible');
-    }, 4000); // Inicia la animación después de 3 segundos
-
-    // Crear estrellas
-    const stars = document.getElementById('stars');
-    for (let i = 0; i < 100; i++) {
-      const star = document.createElement('div');
-      star.classList.add('star');
-      star.style.left = `${Math.random() * 100}%`;
-      star.style.top = `${Math.random() * 100}%`;
-      stars.appendChild(star);
-    }
-  }
-}
-</script>
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
@@ -83,19 +84,27 @@ export default {
 }
 
 @keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
     transform: translateY(0);
   }
+
   40% {
     transform: translateY(10px);
   }
+
   60% {
     transform: translateY(5px);
   }
 }
 
 .flecha {
-  width: 50px; /* Ajusta el tamaño según sea necesario */
+  width: 50px;
+  /* Ajusta el tamaño según sea necesario */
   animation: bounce 2s infinite;
 }
 
@@ -172,32 +181,4 @@ export default {
 }
 
 /* Animaciones */
-
-/* Estrellas */
-#stars {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-}
-
-.star {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: white;
-  border-radius: 50%;
-  animation: twinkle 2s infinite;
-}
-
-@keyframes twinkle {
-  0%, 100% {
-    opacity: 0.5;
-  }
-  50% {
-    opacity: 1;
-  }
-}
 </style>
