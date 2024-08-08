@@ -4,10 +4,11 @@
       <div class="navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/todosLosJuegos" id="game"><strong>Principal</strong></a>
+            <a class="nav-link active" aria-current="page" href="/biblioteca"
+              id="game"><strong>Principal</strong></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="/contactanos" id="contact"><strong>Contactanos</strong></a>
+            <a class="nav-link active" href="/Contactanos" id="contact"><strong>Contactanos</strong></a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" href="/sobreNosotros" id="about"><strong>Info</strong></a>

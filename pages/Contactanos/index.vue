@@ -23,7 +23,6 @@ import navComponent from '~/components/navGeneral.vue';
   padding-right: 5%;
   color: white;
 }
-
 #bg {
   min-height: 100vh;
   background: #17153B;

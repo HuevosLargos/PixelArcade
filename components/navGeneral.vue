@@ -7,7 +7,7 @@
             <a class="nav-link active" aria-current="page" href="/biblioteca" id="game"><strong>Juegos</strong></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="/contactanos" id="contact"><strong>Contactanos</strong></a>
+            <a class="nav-link active" href="/Contactanos" id="contact"><strong>Contactanos</strong></a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" href="/sobreNosotros" id="about"><strong>Info</strong></a>
