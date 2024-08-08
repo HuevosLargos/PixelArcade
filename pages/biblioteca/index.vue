@@ -1,22 +1,35 @@
 <template>
   <div id="bg">
-      <h1 id="selectortxt">
-          Selector de juegos
-      </h1>
+    <h1 id="selectortxt">Selector de juegos</h1>
+    <!--*SELECTOR DE JUEGOS-->
     <div class="row row-cols-1 row-cols-md-3 g-4" id="carta">
       <div class="col" v-for="(card, index) in cards" :key="index">
-        <div :class="['card', card.class, { active: index === currentCard, left: index === (currentCard - 1 + cards.length) % cards.length, right: index === (currentCard + 1) % cards.length }]">
-          <img :src="card.img" class="card-img-top" />
-          <div class="card-body">
-            <p class="card-title">{{ card.title }}</p>
-          </div>
-        </div>
+        <img :src="card.img" class="card-img-top" :class="{ active: index === currentCard }" />
+        <p class="card-title">{{ card.title }}</p>
+        <p class="card-text">{{ card.description }}</p>
       </div>
     </div>
-    <div class="controls">
-      <button @click="prevCard">⬅️</button>
-      <button @click="nextCard">➡️</button>
+    <!--*SELECTOR DE JUEGOS-->
+    <!--*BOTON JUGAR-->
+    <div class="buton-2">
+      <a href="" class="btn-2">Jugar</a>
     </div>
+    <!--*BOTON JUGAR-->
+
+    <!--*FLECHAS PARA CAMBIAR DE JUEGO-->
+    <div class="d-flex justify-content-center mt-1 w-100">
+      <button @click="prevCard"><svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" viewBox="0 0 24 24">
+  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12l4-4m-4 4 4 4"/>
+</svg>
+</button>
+      <button @click="nextCard">
+        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" viewBox="0 0 24 24">
+  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4"/>
+</svg>
+</button>
+    </div>
+    <!--*FLECHAS PARA CAMBIAR DE JUEGO-->
+
   </div>
 </template>
 
@@ -25,12 +38,27 @@ export default {
   data() {
     return {
       cards: [
-        { class: 'card-1', img: require('../../public/img/pacman.png'), title: 'Pacman' },
-        { class: 'card-2', img: require('../../public/img/Pong atari.png'), title: 'Pong' },
-        { class: 'card-3', img: require('../../public/img/Space invaders.png'), title: 'Space invaders' }
+        {
+          class: "card-1",
+          img: require("../../public/img/pacman.png"),
+          title: "Pacman",
+          description: ""
+        },
+        {
+          class: "card-2",
+          img: require("../../public/img/Pong atari.png"),
+          title: "Pong",
+          description: ""
+        },
+        {
+          class: "card-3",
+          img: require("../../public/img/Space invaders.png"),
+          title: "Space Invaders",
+          description: ""
+        },
       ],
       currentCard: 0,
-      isTransitioning: false
+      isTransitioning: false,
     };
   },
   methods: {
@@ -47,12 +75,13 @@ export default {
       if (!this.isTransitioning) {
         this.isTransitioning = true;
         setTimeout(() => {
-          this.currentCard = (this.currentCard - 1 + this.cards.length) % this.cards.length;
+          this.currentCard =
+            (this.currentCard - 1 + this.cards.length) % this.cards.length;
           this.isTransitioning = false;
         }, 500); // 500ms delay
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -66,6 +95,7 @@ export default {
   display: flex;
   overflow: hidden;
   position: relative;
+  justify-content: center;
 }
 
 #bg {
@@ -79,51 +109,19 @@ export default {
   justify-content: center;
 }
 
-.card {
-  min-width: 100%;
-  transition: transform 0.5s ease;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.card img {
+.card-img-top {
   width: 100%;
   height: auto;
+  max-width: 500px;
+  min-height: 300px;
+  box-shadow: white 0 0 20px;
+  transition: opacity 0.5s ease-in-out;
+  opacity: 0;
+  position: absolute;
 }
 
-.card.active {
-  transform: translateX(0);
-  z-index: 2;
-}
-
-.card.left {
-  transform: translateX(-100%);
-  z-index: 1;
-}
-
-.card.right {
-  transform: translateX(100%);
-  z-index: 1;
-}
-
-.card-1 {
-  background-color: #433d8b;
-}
-
-.card-2 {
-  background-color: #41b06e;
-}
-
-.card-3 {
-  background-color: #5f374b;
-}
-
-.controls {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  margin-top: 20px;
+.card-img-top.active {
+  opacity: 1;
 }
 
 button {
@@ -133,7 +131,41 @@ button {
   font-size: 2rem;
   cursor: pointer;
 }
-#selectortxt{
-  padding-bottom: 3%;
+
+#selectortxt {
+  padding-bottom: 4%;
+}
+
+.boton-2 {
+  display: flex;
+}
+
+.btn-2 {
+  text-decoration: none;
+  background-color: #e1ad12;
+  color: rgb(49, 49, 49);
+  padding: 10px 20px;
+  border-radius: 20px;
+  transition: all .3s ease;
+}
+
+.btn-2:hover {
+  background-color: #ffc000;
+  color: #000;
+  box-shadow: yellow 0 0 30px;
+}
+
+.card-title {
+  color: white;
+  text-align: center;
+  font-size: x-large;
+  padding-top: 10%;
+}
+
+.card-text {
+  color: white;
+  text-align: center;
+  font-size: medium;
+  padding-top: 5%;
 }
 </style>
