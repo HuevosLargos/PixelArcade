@@ -1,19 +1,19 @@
 <template>
   <nav class="navbar contracted navbar-expand-lg shadow-lg">
     <div class="container">
-      <div class="navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
+      <div class="navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/" id="game"><strong>Principal</strong></a>
+            <a class="nav-link active" aria-current="page" href="/" id="game"><strong>Home</strong></a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" href="/Contactanos" id="contact"><strong>Contacto</strong></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="/biblioteca" id="about"><strong>Juegos</strong></a>
+            <a class="nav-link active" href="/sobreNosotros" id="Records"><strong>Records</strong></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="/sobreNosotros" id="username"><strong>Records</strong></a>
+            <a class="nav-link active" href="/sobreNosotros" id="about"><strong>About</strong></a>
           </li>
         </ul>
       </div>
@@ -37,9 +37,6 @@
   overflow: hidden;
   background-color: #fff;
   transition: background-color 0.5s ease;
-  display: grid;
-  place-content: center;
-  /* Añade esto */
 }
 
 .navbar.expanded {
@@ -47,7 +44,6 @@
   transition: 0.5s ease;
   /* Cambia esto al tamaño que prefieras cuando el ratón está encima */
 }
-
 
 .navbar.contracted {
   height: 5em;
@@ -72,7 +68,7 @@
   transition: filter 0.3s ease;
 }
 
-#username:hover {
+#Records:hover {
   color: #00eeff !important;
   filter: drop-shadow(0 0 10px #009da8);
   transition: filter 0.3s ease;
@@ -95,16 +91,12 @@
 .cart {
   margin-bottom: 0.5em;
   transition: filter 0.3s ease;
-
 }
 
 .navbar-nav {
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
   height: 50px;
   transition: height 0.3s ease;
-  margin-right: 28%;
 }
 
 .nav-item {
@@ -149,7 +141,7 @@ export default {
           link.classList.remove("white-text");
         });
       });
-    }, 3000); // Delay de 2 segundos
+    }, 3000); // Delay de 3 segundos
   },
 };
 </script>

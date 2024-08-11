@@ -7,7 +7,6 @@ const subtitle = ref(null)
 const navbar = ref(null)
 const disponibles = ref(null)
 
-
 onMounted(() => {
   // Desplazar automáticamente hacia arriba al cargar la página
   window.scrollTo(0, 0);
@@ -16,7 +15,6 @@ onMounted(() => {
   subtitle.value = document.getElementById('subtitle');
   navbar.value = document.querySelector('.navbar');
   disponibles.value = document.getElementById('JuegosdisponiblesTitulo');
-
 
   setTimeout(() => {
     if (title.value) {
@@ -42,7 +40,6 @@ onMounted(() => {
   }, 4000); // Inicia la animación después de 4 segundos
 });
 </script>
-
 
 <template>
   <div id="bg">
@@ -98,6 +95,24 @@ onMounted(() => {
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+/* Ocultar la barra de desplazamiento en navegadores Webkit (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+  /* Opcional, para que el fondo sea transparente */
+}
+
+/* Ocultar la barra de desplazamiento en Firefox */
+html {
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+body {
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+}
 
 /* CONTENEDOR PACMAN */
 #ContenedorPacman {
@@ -212,7 +227,8 @@ onMounted(() => {
   background: #17153B;
   min-height: 100vh;
   position: relative;
-  overflow: hidden;
+  overflow: auto;
+  /* Asegúrate de que el contenido sea desplazable */
 }
 
 #tipografia {
@@ -223,7 +239,6 @@ onMounted(() => {
 #textosTitulos {
   text-align: center;
   padding-top: 20%;
-
 }
 
 /* FONDO, TIPOGRAFIA GENERAL*/
@@ -231,15 +246,20 @@ onMounted(() => {
   color: white;
   font-size: xx-large;
   transition: all 2s ease;
+  text-align: center;
+  /* Centrar el título */
 }
 
 #subtitle {
   color: rgb(141, 140, 140);
   font-size: medium;
   transition: all 2s ease;
+  text-align: center;
+  /* Centrar el subtítulo */
 }
 
 /* TITULO PRINCIPAL */
+
 
 /* Animaciones */
 .animate-title {
